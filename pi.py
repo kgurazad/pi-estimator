@@ -3,9 +3,14 @@ from random import random as r
 from math import pow as p
 from sys import argv
 
-# Make sure number of attempts is given on command line
-assert len(argv) == 2
-attempts = int(argv[1])
+# Use argparse to take command line options and generate help text
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("number", help="number of random points (int)", type=int)
+args = parser.parse_args()
+
+# Grab number of attempts from command line
+attempts = args.number
 inside = 0
 tries = 0
 
@@ -17,4 +22,3 @@ while (tries < attempts):
 
 # Compute and print a final ratio
 print( f'Final pi estimate from {attempts} attempts = {4*(inside/tries)}' )
-
